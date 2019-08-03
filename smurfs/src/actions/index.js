@@ -13,17 +13,17 @@ export const getSmurfs = () => {
   return function(dispatch) {
     dispatch({type: FETCH_SMURFS_START});
     axios
-      .get('http://localhost:3333')
+      .get('http://localhost:3333/smurfs')
       .then(({data: {results}}) => {
         dispatch({
           type: FETCH_SMURFS_SUCCESS,
-          payload: results
+          payload: results.data
         })
       })
       .catch(err => 
         dispatch({
           type: FETCH_SMURFS_FAILURE,
-          payload: error
+          payload: err
         }));
   };
 };
