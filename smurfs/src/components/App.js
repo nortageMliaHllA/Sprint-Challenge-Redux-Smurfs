@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Route } from 'react-router-dom';
-import Home  from '../components/Home';
+import List from './List';
+import SmurfForm from './SmurfForm';
 /*
  to wire this component up you're going to need a few things.
  I'll let you do this part on your own. 
@@ -11,10 +11,11 @@ import Home  from '../components/Home';
 class App extends Component {
   render() {
     return (
-      <div>
-        <Route exact path='/' component={Home}></Route>
+      <div className="App">
+      <List />
+      <SmurfForm />
       </div>
-    );
+      );
   }
   
 }

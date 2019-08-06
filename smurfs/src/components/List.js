@@ -1,22 +1,43 @@
 import React from 'react';
-import { fetchSmurfs } from '../actions/index';
 import { connect } from 'react-redux';
+import { fetchSmurfs } from '../actions';
 
 
 
 class List extends React.Component {
 
+
     componentDidMount() {
         this.props.fetchSmurfs();
     }
-}
+
 
 render() {
-    if(this.props.fetchSmurfs){
-        return (
-            <h1>We will return to the Smurf village shortly...</h1>
-        )
-    }else{
-        return
+    return (
+        <div>
+            {this.props.smurfs.map(smurf =>
+            
+            <div>
+                <h1>{smurf.name}</h1>
+                <h3>{smurf.age}</h3>
+                <h3>{smurf.height}</h3>
+            </div>
+            )}
+        </div>
+        );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        smurfs: state.smurfs,
+        fetchingSmurfs: state.fetchingSmurfs
+    };
+};
+
+export default connect(
+    mapStateToProps, 
+    {
+        fetchSmurfs
+    }
+)(List);
